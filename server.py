@@ -41,8 +41,8 @@ try:
                 integers.append(int.from_bytes(val, 'big'))
                 i+=1
             calculate_and_send(integers)
-    sock.close()
 except KeyboardInterrupt:
+    sock.close()
     timer = 3
     print("\n")
     while timer > 0:

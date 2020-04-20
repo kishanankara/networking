@@ -6,13 +6,11 @@ import time
 
 FORMAT = '%(asctime)-15s %(message)s'
 logging.basicConfig(format=FORMAT)
-logger = logging.getLogger('tcpserver')
+logger = logging.getLogger('tcpclient')
 logger.setLevel(10)
 def start_server(integers):
     sock = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
     sock.connect(('localhost', 8000))
-    #s1 = socket.htonl(int(integers[0]).to_bytes(10, 'little'))
-    #s2 = socket.htonl(int(integers[1]).to_bytes(10, 'little'))
     sock.send(int(integers[0]).to_bytes(10, 'big'))
     sock.send(int(integers[1]).to_bytes(10, 'big'))
     sock.close()

@@ -32,16 +32,15 @@ try:
         logger.info('Connections to be served: %s' % [x[1] for x in active_connections])
         logger.info('Connections already server: %s' %[x[1] for x in visited_connections])
         for connection in active_connections:
-            if connection not in visited_connections:
-                integers = []
-                visited_connections.append(connection)
-                active_connections.remove(connection)
-                #Process connection values
-                while i < 2:
-                    val=connection[0].recv(10)
-                    integers.append(int.from_bytes(val, 'big'))
-                    i+=1
-                calculate_and_send(integers)
+            integers = []
+            visited_connections.append(connection)
+            active_connections.remove(connection)
+            #Process connection values
+            while i < 2:
+                val=connection[0].recv(10)
+                integers.append(int.from_bytes(val, 'big'))
+                i+=1
+            calculate_and_send(integers)
     sock.close()
 except KeyboardInterrupt:
     timer = 3
